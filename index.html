@@ -1,2 +1,406 @@
-<h1>Hello, world!</h1><p>This is my first GitHub site.</p>
-<p>I'm learning GitHub!</p>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jin Tae Woo</title>
+<meta name="description" content="Jin Tae Woo — Columbia MBA candidate, former finance analyst and U.S. Army logistics specialist.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f1ea;
+    --surface: #fbf9f4;
+    --ink: #1b1d1a;
+    --muted: #5f625b;
+    --line: #d9d4c7;
+    --accent: #c4501b;
+    --olive: #4a5a3a;
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: "Inter", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141513;
+      --surface: #1c1e1b;
+      --ink: #ece8de;
+      --muted: #a09d93;
+      --line: #33352f;
+      --accent: #ec7a43;
+      --olive: #9fb381;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.65 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 56px; }
+  .mark { font-family: var(--mono); font-size: 13px; letter-spacing: .08em; text-decoration: none; }
+  .mark b { color: var(--accent); font-weight: 500; }
+  nav ul { list-style: none; display: flex; gap: 24px; }
+  nav ul a { font-size: 14px; text-decoration: none; color: var(--muted); }
+  nav ul a:hover { color: var(--ink); }
+  @media (max-width: 640px) { nav ul { gap: 14px; } nav ul li:nth-child(n+3) { display: none; } }
+
+  /* hero */
+  .hero { padding: 96px 0 72px; border-bottom: 1px solid var(--line); }
+  .eyebrow {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--olive);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+  h1 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(56px, 11vw, 132px); line-height: .95;
+    letter-spacing: -.02em; margin: 24px 0 28px;
+  }
+  h1 em { color: var(--accent); }
+  .lede { font-size: clamp(18px, 2.2vw, 22px); max-width: 640px; color: var(--muted); }
+  .lede strong { color: var(--ink); font-weight: 500; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 20px; border-radius: 999px; font-size: 15px; font-weight: 500;
+    text-decoration: none; border: 1px solid var(--ink); transition: .2s;
+  }
+  .btn.solid { background: var(--ink); color: var(--bg); }
+  .btn:hover { transform: translateY(-2px); }
+
+  /* path */
+  .path {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--line);
+  }
+  .stop { padding: 28px 24px 32px 0; position: relative; }
+  .stop + .stop { padding-left: 24px; border-left: 1px solid var(--line); }
+  .stop .yr { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .stop .what { font-family: var(--serif); font-size: 30px; line-height: 1.1; margin: 8px 0 4px; }
+  .stop .where { font-size: 14px; color: var(--muted); }
+  .stop.now .yr { color: var(--accent); }
+  .stop.now .yr::after { content: " ● now"; }
+  @media (max-width: 720px) {
+    .path { grid-template-columns: 1fr; }
+    .stop, .stop + .stop { padding: 20px 0; border-left: 0; border-top: 1px solid var(--line); }
+    .stop:first-child { border-top: 0; }
+  }
+
+  /* sections */
+  section { padding: 88px 0; border-bottom: 1px solid var(--line); }
+  .sec-head { display: grid; grid-template-columns: 220px 1fr; gap: 32px; margin-bottom: 40px; }
+  .sec-head .num { font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: .1em; padding-top: 14px; }
+  h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(38px, 5vw, 56px); line-height: 1.05; }
+  .body { margin-left: 252px; }
+  @media (max-width: 820px) {
+    .sec-head { grid-template-columns: 1fr; gap: 8px; }
+    .body { margin-left: 0; }
+  }
+
+  /* numbers */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .stat { background: var(--surface); padding: 28px 22px; }
+  .stat .n { font-family: var(--serif); font-size: 52px; line-height: 1; }
+  .stat .n small { font-size: 26px; color: var(--accent); }
+  .stat p { font-size: 14px; color: var(--muted); margin-top: 12px; }
+  @media (max-width: 820px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 420px) { .stat .n { font-size: 40px; } }
+
+  /* roles */
+  .role { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding: 36px 0; border-top: 1px solid var(--line); }
+  .role:first-of-type { border-top: 0; padding-top: 0; }
+  .role .meta { font-family: var(--mono); font-size: 12px; color: var(--muted); line-height: 1.8; }
+  .role .meta .dates { color: var(--ink); font-size: 13px; }
+  .role h3 { font-size: 22px; font-weight: 600; letter-spacing: -.01em; }
+  .role .org { color: var(--olive); font-weight: 500; margin: 2px 0 12px; }
+  .role .ctx { font-size: 15px; color: var(--muted); margin-bottom: 16px; }
+  .role ul { list-style: none; display: grid; gap: 12px; }
+  .role li { padding-left: 22px; position: relative; }
+  .role li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+  .role li b { font-weight: 600; }
+  .sub { margin-top: 24px; padding-top: 20px; border-top: 1px dashed var(--line); }
+  .sub h4 { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+  .sub h4 span { font-family: var(--mono); font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 8px; }
+  @media (max-width: 820px) { .role { grid-template-columns: 1fr; gap: 12px; } }
+
+  /* education */
+  .edu { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 28px; }
+  .card .tag { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+  .card h3 { font-family: var(--serif); font-weight: 400; font-size: 30px; line-height: 1.1; margin: 10px 0 6px; }
+  .card .deg { font-weight: 500; }
+  .card p { font-size: 14px; color: var(--muted); margin-top: 12px; }
+  @media (max-width: 720px) { .edu { grid-template-columns: 1fr; } }
+
+  /* toolkit */
+  .kit { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .kit h4 { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font-size: 13px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+  @media (max-width: 820px) { .kit { grid-template-columns: 1fr; } }
+
+  /* beyond */
+  .beyond { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; }
+  .quote {
+    background: var(--ink); color: var(--bg); padding: 40px; border-radius: 4px;
+    font-family: var(--serif); font-size: clamp(26px, 3.2vw, 36px); line-height: 1.2;
+  }
+  .quote span { display: block; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; margin-top: 24px; opacity: .65; }
+  .list { display: grid; gap: 14px; }
+  .list .card { padding: 22px; }
+  .list .card h3 { font-size: 22px; margin-top: 6px; }
+  @media (max-width: 820px) { .beyond { grid-template-columns: 1fr; } }
+
+  /* contact */
+  .contact { padding: 112px 0; text-align: left; border-bottom: 0; }
+  .contact h2 { font-size: clamp(44px, 8vw, 96px); max-width: 900px; }
+  .contact h2 em { color: var(--accent); }
+  .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  footer { border-top: 1px solid var(--line); padding: 24px 0 40px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="mark" href="#top">JIN TAE WOO<b>_</b></a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#toolkit">Toolkit</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">MBA Candidate · Columbia Business School</div>
+    <h1>Jin Tae Woo.<br><em>Systems</em> person.</h1>
+    <p class="lede">I've spent my career making complicated operations run cleanly. That started with <strong>SAP inventory for a 200-person Army unit</strong>, continued with <strong>$100M+ in weekly cash flows</strong> at a media agency, and now continues with Strategy &amp; Operations at Columbia.</p>
+    <div class="cta">
+      <a class="btn solid" href="mailto:JWoo28@gsb.columbia.edu">Get in touch →</a>
+      <a class="btn" href="https://www.linkedin.com/in/jintaewoo" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="path">
+    <div class="stop reveal">
+      <div class="yr">2016 — 2020</div>
+      <div class="what">U.S. Army</div>
+      <div class="where">Fort Hood, TX · Camp Casey, South Korea</div>
+    </div>
+    <div class="stop reveal">
+      <div class="yr">2021 — 2026</div>
+      <div class="what">Berkeley → Finance</div>
+      <div class="where">BA Economics · Canvas Worldwide</div>
+    </div>
+    <div class="stop now reveal">
+      <div class="yr">2026 — 2028</div>
+      <div class="what">Columbia MBA</div>
+      <div class="where">Strategy &amp; Operations · New York</div>
+    </div>
+  </div>
+</div>
+
+<section id="impact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="num">01 / IMPACT</div>
+      <h2>A few numbers I'm proud of.</h2>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><div class="n">$3.6<small>M+</small></div><p>New annual interest income from restructuring client liquidity</p></div>
+      <div class="stat"><div class="n">95<small>%</small></div><p>Forecast accuracy, up from 80%, after connecting Excel to MediaOcean ERP</p></div>
+      <div class="stat"><div class="n">20<small>%</small></div><p>T&amp;E spend cut across 500 employees through a policy I wrote</p></div>
+      <div class="stat"><div class="n">2<small>×</small></div><p>Faster onboarding for Army SAP technicians, from 4 weeks to 2</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="num">02 / EXPERIENCE</div>
+      <h2>Where I've done the work.</h2>
+    </div>
+    <div class="body">
+      <article class="role reveal">
+        <div class="meta"><div class="dates">2023 — 2026</div>Playa Vista, CA</div>
+        <div>
+          <h3>Financial Analyst</h3>
+          <div class="org">Canvas Worldwide</div>
+          <p class="ctx">A media advertising firm generating $500M in revenue, with clients including Hyundai and MGM.</p>
+          <ul>
+            <li>Managed <b>$100M+ in weekly excess client liquidity</b> with the CFO. Sweeping balances into money-market accounts raised yield by 18% and generated $3.6M+ in annual interest income.</li>
+            <li>Built an <b>automated cash-forecasting model</b> in Dynamics 365 Business Central. It saves 10 hours of reporting a month and gives the C-suite real-time liquidity visibility.</li>
+            <li>Developed a <b>predictive client forecasting model</b> connecting Excel with MediaOcean ERP, which raised forecast accuracy from 80% to 95%.</li>
+            <li>Authored a <b>new company T&amp;E policy</b> with a standardized approval workflow, cutting spend by 20% across 500 employees to fund expanded benefits.</li>
+            <li>Achieved <b>100% processing accuracy</b> on $50M–$100M in weekly disbursements across 100+ vendors, which eliminated recurring vendor payment fraud.</li>
+            <li>Produced 11+ monthly reports and all quarterly and annual HQ submissions with <b>zero errors over 3 years</b>.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="role reveal">
+        <div class="meta"><div class="dates">2016 — 2020</div>Fort Hood, TX &amp;<br>Camp Casey, South Korea</div>
+        <div>
+          <h3>Specialist (E-4), Automated Logistics Specialist</h3>
+          <div class="org">United States Army</div>
+          <ul>
+            <li>Led <b>4 logistics specialists</b> supporting a 200-person unit and sustained <b>98%+ equipment availability</b> across 2 deployment cycles.</li>
+            <li>Trained <b>15 technicians on SAP ERP</b>, halving onboarding time with 0% inventory data errors.</li>
+            <li>Directed audits across a <b>$10M+ asset portfolio</b>, cutting supply expenditures by 20%.</li>
+            <li>Standardized reporting across 5 regional commands, which raised compliance from 70% to 95% and produced a perfect inspection record.</li>
+          </ul>
+          <div class="sub">
+            <h4>Private First Class (E-3), Administrative Specialist <span>2016 — 2017</span></h4>
+            <ul>
+              <li>Automated personnel tracking for 150 soldiers in DTMS, reducing administrative errors by 30%.</li>
+              <li>Raised unit course completion rates by 25%, bringing <b>100% of personnel current</b> on mandatory training.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="num">03 / EDUCATION</div>
+      <h2>Where I learned.</h2>
+    </div>
+    <div class="body">
+      <div class="edu">
+        <div class="card reveal">
+          <div class="tag">2026 — 2028 · New York</div>
+          <h3>Columbia Business School</h3>
+          <div class="deg">MBA, Strategy &amp; Operations</div>
+          <p>Technology Club · CBS Veterans Club · FinTech &amp; Blockchain Club</p>
+        </div>
+        <div class="card reveal">
+          <div class="tag">2021 — 2023 · Berkeley</div>
+          <h3>UC Berkeley</h3>
+          <div class="deg">BA, Economics · GPA 3.9 / 4.0</div>
+          <p>Distinction in General Scholarship · Bemco, Markowitz &amp; Hughes Scholarships</p>
+          <p>Association of Korean Artists · KUNA · RA-ON Rock Band</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="toolkit">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="num">04 / TOOLKIT</div>
+      <h2>What I work with.</h2>
+    </div>
+    <div class="body">
+      <div class="kit reveal">
+        <div>
+          <h4>Systems &amp; Tools</h4>
+          <div class="chips">
+            <span class="chip">Dynamics 365 Business Central</span>
+            <span class="chip">MediaOcean ERP</span>
+            <span class="chip">SAP ERP</span>
+            <span class="chip">Advanced Excel (VBA)</span>
+            <span class="chip">R</span>
+          </div>
+        </div>
+        <div>
+          <h4>Certifications</h4>
+          <div class="chips">
+            <span class="chip">SAP ERP (GCSS-Army)</span>
+            <span class="chip">Adventis Financial Modeling I &amp; II</span>
+            <span class="chip">MSSC CPT</span>
+            <span class="chip">OSHA 10-Hour</span>
+          </div>
+        </div>
+        <div>
+          <h4>Honors</h4>
+          <div class="chips">
+            <span class="chip">Army Achievement Medal ×3</span>
+            <span class="chip">Army Good Conduct Medal</span>
+            <span class="chip">Army Certificate of Achievement</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="beyond">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="num">05 / BEYOND WORK</div>
+      <h2>The rest of me.</h2>
+    </div>
+    <div class="body">
+      <div class="beyond">
+        <div class="quote reveal">
+          I was selected as solo vocalist to sing both the U.S. and South Korean national anthems.
+          <span>♪ Singing</span>
+        </div>
+        <div class="list">
+          <div class="card reveal"><div class="tag">Community</div><h3>Financial Literacy Educator</h3><p>CARE Los Angeles</p></div>
+          <div class="card reveal"><div class="tag">Community</div><h3>Wildfire Relief Volunteer</h3><p>YMCA</p></div>
+          <div class="card reveal"><div class="tag">Interest</div><h3>Long-term investing</h3><p>Individual equities, held for the long run</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow reveal">Let's talk</div>
+    <h2 class="reveal" style="margin-top:20px">Building something that needs to <em>run well?</em></h2>
+    <div class="links reveal">
+      <a class="btn solid" href="mailto:JWoo28@gsb.columbia.edu">JWoo28@gsb.columbia.edu</a>
+      <a class="btn" href="https://www.linkedin.com/in/jintaewoo" target="_blank" rel="noopener">linkedin.com/in/jintaewoo ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Jin Tae Woo</span>
+    <span>Hosted on GitHub Pages</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 }) : null;
+  document.querySelectorAll('.reveal').forEach(el => io ? io.observe(el) : el.classList.add('in'));
+</script>
+</body>
+</html>
